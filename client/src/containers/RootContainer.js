@@ -1,10 +1,10 @@
 // @flow
-import React from 'react'
-import { Text, SafeAreaView, StyleSheet } from 'react-native'
+import React from "react"
+import { SafeAreaView, StyleSheet } from "react-native"
 
 // components
-import { RoundedButton } from '../components'
-import { Colors } from '../themes'
+import { Message, Keyboard } from "../components"
+import { Colors } from "../themes"
 
 const styles = StyleSheet.create({
   container: {
@@ -14,11 +14,15 @@ const styles = StyleSheet.create({
 })
 
 export default class RootContainer extends React.PureComponent<null> {
+  onNumberPress = number => {
+    // @TODO
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Text!</Text>
-        <RoundedButton onPress={() => null}>Button text</RoundedButton>
+        <Message message="ahoj" />
+        <Keyboard onNumberPress={number => this.onNumberPress(number)} />
       </SafeAreaView>
     )
   }

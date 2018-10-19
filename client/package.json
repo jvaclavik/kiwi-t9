@@ -18,7 +18,8 @@
   "dependencies": {
     "expo": "^30.0.1",
     "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz"
+    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "shortid": "^2.2.13"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
