@@ -1,18 +1,13 @@
-var express = require('express');
-var router = express.Router();
+var express = require("express")
+var router = express.Router()
 
-const getCombinations = (input) => {
+const getCombinations = input => {
   // @TODO
-  return input;
+  return input
 }
 
-router.get('/', (req, res, next) => 
-  res
-    .status(200)
-    .json(
-      getCombinations(req.query.input)
-    )
-);
+router.get("/", (req, res, next) =>
+  res.status(200).json(getCombinations(req.query.input)),
+)
 
-module.exports = router;
-
+module.exports = router
