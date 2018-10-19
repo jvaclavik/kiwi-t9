@@ -5,7 +5,8 @@
   "scripts": {
     "babel-node": "babel-node --presets=latest",
     "start": "nodemon --exec npm run babel-node -- ./bin/www",
-    "build": "babel src -d dist"
+    "build": "babel src -d dist",
+    "test": "mocha '__tests__/api.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -22,8 +23,10 @@
     "babel-eslint": "^10.0.1",
     "babel-preset-latest": "^6.24.1",
     "eslint": "^5.7.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "supertest": "^3.3.0"
   },
   "babel": {
     "presets": [
