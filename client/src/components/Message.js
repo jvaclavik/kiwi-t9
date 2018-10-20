@@ -1,10 +1,16 @@
 // @flow
 import React from "react"
-import { View, StyleSheet, Text } from "react-native"
+
+// components
+import { ScrollView, StyleSheet, Text } from "react-native"
+
+// theme
+import { Metrics } from "../themes"
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: Metrics.spacings.section,
   },
 })
 
@@ -16,9 +22,9 @@ export default class Message extends React.PureComponent<Props> {
   render() {
     const { message } = this.props
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text>{message}</Text>
-      </View>
+      </ScrollView>
     )
   }
 }

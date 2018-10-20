@@ -3,7 +3,9 @@ import React from "react"
 import { StyleSheet, Text, TouchableOpacity } from "react-native"
 
 // theme
-import { Colors, Metrics } from "../themes"
+import { Colors, Metrics, Fonts } from "../themes"
+
+// types
 import { StyleValue } from "../types"
 
 const styles = StyleSheet.create({
@@ -11,14 +13,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.background,
     borderColor: Colors.primary,
-    borderWidth: 2,
+    borderWidth: 1,
     width: Metrics.buttons.height,
     height: Metrics.buttons.height,
     borderRadius: Metrics.buttons.height / 2,
     justifyContent: "center",
   },
   number: {
-    fontSize: 25,
+    fontSize: Fonts.sizes.huge,
+    fontWeight: "200",
+  },
+  text: {
+    fontSize: Fonts.sizes.small,
   },
 })
 
@@ -35,7 +41,7 @@ export default class RoundedButton extends React.PureComponent<Props> {
     return (
       <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
         <Text style={styles.number}>{number}</Text>
-        <Text>{characters}</Text>
+        <Text style={styles.text}>{characters.toUpperCase()}</Text>
       </TouchableOpacity>
     )
   }

@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     marginHorizontal: Metrics.spacings.large,
+    marginVertical: Metrics.spacings.double,
   },
   button: {
     width: "33%",
