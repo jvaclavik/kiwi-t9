@@ -1,10 +1,10 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
+import React from "react"
+import renderer from "react-test-renderer"
 
 // components
-import RoundedButton from '../RoundedButton'
+import RoundedButton from "../RoundedButton"
 
-test('renders correctly', () => {
+test("renders correctly", () => {
   const tree = renderer
     .create(<RoundedButton onPress={() => null}>Ahoj</RoundedButton>)
     .toJSON()

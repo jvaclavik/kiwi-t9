@@ -5,12 +5,15 @@ import React from "react"
 import { ScrollView, StyleSheet, Text } from "react-native"
 
 // theme
-import { Metrics } from "../themes"
+import { Metrics, Fonts } from "../themes"
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: Metrics.spacings.section,
+  },
+  text: {
+    fontSize: Fonts.sizes.subtitle,
   },
 })
 
@@ -23,7 +26,7 @@ export default class Message extends React.PureComponent<Props> {
     const { message } = this.props
     return (
       <ScrollView style={styles.container}>
-        <Text>{message}</Text>
+        <Text style={styles.text}>{message}</Text>
       </ScrollView>
     )
   }
