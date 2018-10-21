@@ -19,13 +19,20 @@ const getCombinations = input => {
 router.get("/", (req, res, next) => {
   const input = req.query.input
   res.set("Content-Type", "application/json")
-  if (isInputValid(input)) {
-    res.status(200).json(getCombinations(input))
-  } else {
+  if (!input || input.length < 1) {
     const body = {
-      errors: [`Bad input. Allowed pattern is: ${validationRegexPattern}`],
+      errors: [`No input`],
     }
     res.status(400).json(body)
+  } else {
+    if (isInputValid(input)) {
+      res.status(200).json(getCombinations(input))
+    } else {
+      const body = {
+        errors: [`Bad input. Allowed pattern is: ${validationRegexPattern}`],
+      }
+      res.status(400).json(body)
+    }
   }
 })
 
