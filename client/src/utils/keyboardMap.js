@@ -8,7 +8,7 @@ export default [
   { type: "number", value: "7", text: "pqrs" },
   { type: "number", value: "8", text: "tuv" },
   { type: "number", value: "9", text: "wxyz" },
-  { type: "spacer" },
-  { type: "number", value: "0", text: " " },
+  { type: "reset", text: "Reset" },
+  { type: "number", value: "0", text: "_" },
   { type: "backspace", value: "\u232B" },
 ]

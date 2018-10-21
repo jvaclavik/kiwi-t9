@@ -33,7 +33,7 @@ const styles = {
 
 type Props = {|
   +onPress: () => void,
-  +value: string,
+  value?: string,
   characters?: string,
   style?: StyleValue,
   valueStyle?: StyleValue,
@@ -41,6 +41,7 @@ type Props = {|
 
 export default class RoundedButton extends React.PureComponent<Props> {
   static defaultProps = {
+    value: null,
     characters: null,
     style: {},
     valueStyle: {},
@@ -53,7 +54,9 @@ export default class RoundedButton extends React.PureComponent<Props> {
         onPress={onPress}
         style={renderStyle([styles.button, style])}
       >
-        <Text style={renderStyle([styles.value, valueStyle])}>{value}</Text>
+        {value && (
+          <Text style={renderStyle([styles.value, valueStyle])}>{value}</Text>
+        )}
         {characters && (
           <Text style={renderStyle(styles.text)}>
             {characters.toUpperCase()}

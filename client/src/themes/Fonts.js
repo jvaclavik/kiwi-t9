@@ -4,6 +4,6 @@ export default {
     base: 18,
     subtitle: 20,
     title: 25,
-    huge: 35,
+    huge: 32,
   },
 }

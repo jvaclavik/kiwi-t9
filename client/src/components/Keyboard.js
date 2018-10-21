@@ -26,35 +26,44 @@ const styles = {
     width: "33%",
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: Metrics.spacings.base,
+    marginVertical: Metrics.spacings.small,
   },
   spacer: {
     width: Metrics.buttons.height + 2 * Metrics.borderWidth,
     height: Metrics.buttons.height + 2 * Metrics.borderWidth,
   },
-  backspaceButton: {
+  buttonWithoutBorder: {
     borderColor: Colors.background,
   },
-  backSpaceValue: {
+  grayText: {
     color: Colors.gray,
   },
 }
 
 type Props = {|
   +onNumberPress: string => void,
-  +onBackspacePress: string => void,
+  +onBackspacePress: () => void,
+  +onResetPress: () => void,
   style?: StyleValue,
   showBackspace?: boolean,
+  showReset?: boolean,
 |}
 
 export default class Keyboard extends React.PureComponent<Props> {
   static defaultProps = {
     style: {},
     showBackspace: false,
+    showReset: false,
   }
 
   renderButton = item => {
-    const { onNumberPress, onBackspacePress, showBackspace } = this.props
+    const {
+      onNumberPress,
+      onBackspacePress,
+      showBackspace,
+      showReset,
+      onResetPress,
+    } = this.props
     return (
       <View style={renderStyle(styles.button)} key={shortid.generate()}>
         {item.type === "number" && (
@@ -64,14 +73,23 @@ export default class Keyboard extends React.PureComponent<Props> {
             characters={item.text}
           />
         )}
+        {item.type === "reset" &&
+          showReset && (
+            <RoundedButton
+              onPress={() => onResetPress(item.value)}
+              characters={item.text}
+              style={styles.buttonWithoutBorder}
+              valueStyle={styles.grayText}
+            />
+          )}
         {item.type === "spacer" && <View style={renderStyle(styles.spacer)} />}
         {item.type === "backspace" &&
           showBackspace && (
             <RoundedButton
               onPress={onBackspacePress}
               value={item.value}
-              style={styles.backspaceButton}
-              valueStyle={styles.backSpaceValue}
+              style={styles.buttonWithoutBorder}
+              valueStyle={styles.grayText}
             />
           )}
       </View>

@@ -1,6 +1,6 @@
 export default {
   buttons: {
-    height: 84,
+    height: 80,
   },
   spacings: {
     small: 5,

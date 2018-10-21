@@ -24,16 +24,16 @@ const styles = {
     backgroundColor: Colors.background,
   },
   title: {
-    height: "10%",
+    height: 40,
   },
   wordList: {
-    height: "10%",
+    height: 44,
   },
   message: {
-    height: "20%",
+    height: 100,
   },
   keyboard: {
-    height: "60%",
+    flex: 1,
     paddingBottom: Metrics.spacings.large,
     alignItems: "center",
     justifyContent: "center",
@@ -44,13 +44,15 @@ type Props = {|
   +api: Api,
 |}
 
+const defaultState = {
+  input: "",
+  message: "",
+  wordList: [],
+  loading: false,
+}
+
 export default class RootContainer extends React.PureComponent<Props> {
-  state = {
-    input: "",
-    message: "",
-    wordList: [],
-    loading: false,
-  }
+  state = defaultState
 
   debouncedInput = debounce(() => {
     const { input } = this.state
@@ -84,6 +86,10 @@ export default class RootContainer extends React.PureComponent<Props> {
         wordList: [],
       })
     }
+  }
+
+  onResetPress = () => {
+    this.setState(defaultState)
   }
 
   onNumberPress = value => {
@@ -126,9 +132,11 @@ export default class RootContainer extends React.PureComponent<Props> {
           style={renderStyle(styles.wordList)}
         />
         <Keyboard
+          showReset={!!message || !!input}
           showBackspace={!!input}
           onNumberPress={this.onNumberPress}
           onBackspacePress={this.onBackspacePress}
+          onResetPress={this.onResetPress}
           style={renderStyle(styles.keyboard)}
         />
       </SafeAreaView>
