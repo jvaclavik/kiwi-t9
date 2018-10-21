@@ -16,13 +16,13 @@ const styles = {
     alignItems: "center",
     backgroundColor: Colors.background,
     borderColor: Colors.primary,
-    borderWidth: 1,
+    borderWidth: Metrics.borderWidth,
     width: Metrics.buttons.height,
     height: Metrics.buttons.height,
     borderRadius: Metrics.buttons.height / 2,
     justifyContent: "center",
   },
-  number: {
+  value: {
     fontSize: Fonts.sizes.huge,
     fontWeight: "200",
   },
@@ -33,25 +33,32 @@ const styles = {
 
 type Props = {|
   +onPress: () => void,
-  +number: string,
-  +characters: string,
+  +value: string,
+  characters?: string,
   style?: StyleValue,
+  valueStyle?: StyleValue,
 |}
 
 export default class RoundedButton extends React.PureComponent<Props> {
   static defaultProps = {
+    characters: null,
     style: {},
+    valueStyle: {},
   }
 
   render() {
-    const { number, characters, onPress, style } = this.props
+    const { value, characters, onPress, style, valueStyle } = this.props
     return (
       <TouchableOpacity
         onPress={onPress}
         style={renderStyle([styles.button, style])}
       >
-        <Text style={renderStyle(styles.number)}>{number}</Text>
-        <Text style={renderStyle(styles.text)}>{characters.toUpperCase()}</Text>
+        <Text style={renderStyle([styles.value, valueStyle])}>{value}</Text>
+        {characters && (
+          <Text style={renderStyle(styles.text)}>
+            {characters.toUpperCase()}
+          </Text>
+        )}
       </TouchableOpacity>
     )
   }

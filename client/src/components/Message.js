@@ -2,13 +2,13 @@
 import React from "react"
 
 // components
-import { ScrollView, Text } from "react-native"
+import { ScrollView, Text, View } from "react-native"
 
 // utils
 import renderStyle from "../utils/renderStyle"
 
 // theme
-import { Metrics, Fonts } from "../themes"
+import { Metrics, Fonts, Colors } from "../themes"
 
 const styles = {
   container: {
@@ -18,19 +18,44 @@ const styles = {
   text: {
     fontSize: Fonts.sizes.subtitle,
   },
+  placeholder: {
+    fontSize: Fonts.sizes.huge,
+    fontWeight: "100",
+    color: Colors.gray,
+  },
+  placeholderContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 }
 
 type Props = {|
   +message: string,
+  style?: StyleValue,
 |}
 
 export default class Message extends React.PureComponent<Props> {
+  static defaultProps = {
+    style: {},
+  }
+
   render() {
-    const { message } = this.props
+    const { message, style } = this.props
     return (
-      <ScrollView style={renderStyle(styles.container)}>
-        <Text style={renderStyle(styles.text)}>{message}</Text>
-      </ScrollView>
+      <View style={renderStyle(style)}>
+        <ScrollView contentContainerStyle={renderStyle(styles.container)}>
+          {message ? (
+            <Text style={renderStyle(styles.text)}>{message}</Text>
+          ) : (
+            <View style={renderStyle(styles.placeholderContainer)}>
+              <Text style={renderStyle(styles.placeholder)}>
+                Type something
+              </Text>
+            </View>
+          )}
+        </ScrollView>
+      </View>
     )
   }
 }

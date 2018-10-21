@@ -44,33 +44,40 @@ type Props = {|
   +words: Array<string>,
   +onWordPress: string => void,
   +loading: boolean,
+  style?: StyleValue,
 |}
 
 export default class WordList extends React.PureComponent<Props> {
+  static defaultProps = {
+    style: {},
+  }
+
   render() {
-    const { loading, onWordPress, words } = this.props
+    const { loading, onWordPress, words, style } = this.props
     return (
-      <ScrollView
-        contentContainerStyle={renderStyle(styles.container, loading)}
-        horizontal
-        style={renderStyle(styles.scrollView)}
-      >
-        {loading ? (
-          <ActivityIndicator size="small" color={Colors.text} />
-        ) : (
-          words.map(word => (
-            <TouchableHighlight
-              underlayColor={Colors.gray}
-              onPress={() => onWordPress(word)}
-              key={shortid.generate()}
-            >
-              <View style={renderStyle(styles.wordContainer)}>
-                <Text style={renderStyle(styles.word)}>{word}</Text>
-              </View>
-            </TouchableHighlight>
-          ))
-        )}
-      </ScrollView>
+      <View style={renderStyle(style)}>
+        <ScrollView
+          contentContainerStyle={renderStyle(styles.container, loading)}
+          horizontal
+          style={renderStyle(styles.scrollView)}
+        >
+          {loading ? (
+            <ActivityIndicator size="small" color={Colors.text} />
+          ) : (
+            words.map(word => (
+              <TouchableHighlight
+                underlayColor={Colors.gray}
+                onPress={() => onWordPress(word)}
+                key={shortid.generate()}
+              >
+                <View style={renderStyle(styles.wordContainer)}>
+                  <Text style={renderStyle(styles.word)}>{word}</Text>
+                </View>
+              </TouchableHighlight>
+            ))
+          )}
+        </ScrollView>
+      </View>
     )
   }
 }

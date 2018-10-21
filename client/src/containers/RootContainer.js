@@ -1,13 +1,13 @@
 // @flow
 import React from "react"
-import { SafeAreaView, View } from "react-native"
+import { SafeAreaView } from "react-native"
 import debounce from "lodash/debounce"
 
 // config
 import appConfig from "../config/appConfig"
 
 // components
-import { Message, Keyboard, WordList } from "../components"
+import { Message, Keyboard, WordList, Title } from "../components"
 
 // utils
 import renderStyle from "../utils/renderStyle"
@@ -15,19 +15,33 @@ import renderStyle from "../utils/renderStyle"
 // styles
 import { Colors, Metrics } from "../themes"
 
+// types
+import { Api } from "../types"
+
 const styles = {
   container: {
     flex: 1,
     backgroundColor: Colors.background,
   },
-  wordList: {
-    height: 60,
+  title: {
+    height: "10%",
   },
-  keyboard: { paddingBottom: Metrics.spacings.large },
+  wordList: {
+    height: "10%",
+  },
+  message: {
+    height: "20%",
+  },
+  keyboard: {
+    height: "60%",
+    paddingBottom: Metrics.spacings.large,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }
 
 type Props = {|
-  +api: any,
+  +api: Api,
 |}
 
 export default class RootContainer extends React.PureComponent<Props> {
@@ -57,18 +71,37 @@ export default class RootContainer extends React.PureComponent<Props> {
       })
   }
 
-  onNumberPress = value => {
-    if (value === "0") {
+  onBackspacePress = () => {
+    const { input } = this.state
+    if (input.length > 1) {
       this.setState(prevState => ({
+        input: prevState.input.slice(0, -1),
+      }))
+      this.debouncedInput()
+    } else {
+      this.setState({
         input: "",
         wordList: [],
-        message: `${prevState.message}${
-          prevState.wordList.length > 0 ? prevState.wordList[0] : ""
-        } `,
-      }))
-    } else {
-      this.setState(prevState => ({ input: `${prevState.input}${value}` }))
-      this.debouncedInput()
+      })
+    }
+  }
+
+  onNumberPress = value => {
+    switch (value) {
+      case "0":
+        this.setState(prevState => ({
+          input: "",
+          wordList: [],
+          message: `${prevState.message}${
+            prevState.wordList.length > 0 ? prevState.wordList[0] : ""
+          } `,
+        }))
+        break
+      case "1":
+        break
+      default:
+        this.setState(prevState => ({ input: `${prevState.input}${value}` }))
+        this.debouncedInput()
     }
   }
 
@@ -81,19 +114,21 @@ export default class RootContainer extends React.PureComponent<Props> {
   }
 
   render() {
-    const { message, wordList, loading } = this.state
+    const { message, wordList, loading, input } = this.state
     return (
       <SafeAreaView style={renderStyle(styles.container)}>
-        <Message message={message} />
-        <View style={renderStyle(styles.wordList)}>
-          <WordList
-            loading={loading}
-            onWordPress={this.onWordPress}
-            words={wordList}
-          />
-        </View>
+        <Title style={renderStyle(styles.title)}>Kiwi T9</Title>
+        <Message style={renderStyle(styles.message)} message={message} />
+        <WordList
+          loading={loading}
+          onWordPress={this.onWordPress}
+          words={wordList}
+          style={renderStyle(styles.wordList)}
+        />
         <Keyboard
+          showBackspace={!!input}
           onNumberPress={this.onNumberPress}
+          onBackspacePress={this.onBackspacePress}
           style={renderStyle(styles.keyboard)}
         />
       </SafeAreaView>
