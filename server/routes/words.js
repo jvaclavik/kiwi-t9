@@ -4,6 +4,10 @@ const getCartesianProduct = require("../utils/cartesianProduct")
 
 var router = express.Router()
 
+const validationRegexPattern = "^[23456789]+$"
+
+const isInputValid = input => new RegExp(validationRegexPattern).test(input)
+
 const mapInputToCharacters = input =>
   input.split("").map(number => charactersMap[number])
 
@@ -14,8 +18,15 @@ const getCombinations = input => {
 
 router.get("/", (req, res, next) => {
   const input = req.query.input
-  res.set('Content-Type', 'application/json'); 
-  res.status(200).json(getCombinations(input))
+  res.set("Content-Type", "application/json")
+  if (isInputValid(input)) {
+    res.status(200).json(getCombinations(input))
+  } else {
+    const body = {
+      errors: [`Bad input. Allowed pattern is: ${validationRegexPattern}`],
+    }
+    res.status(400).json(body)
+  }
 })
 
 module.exports = router
