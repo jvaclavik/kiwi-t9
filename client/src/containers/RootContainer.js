@@ -1,6 +1,6 @@
 // @flow
 import React from "react"
-import { SafeAreaView, View, StyleSheet } from "react-native"
+import { SafeAreaView, View } from "react-native"
 import debounce from "lodash/debounce"
 
 // config
@@ -9,10 +9,13 @@ import appConfig from "../config/appConfig"
 // components
 import { Message, Keyboard, WordList } from "../components"
 
-// styles
-import { Colors } from "../themes"
+// utils
+import renderStyle from "../utils/renderStyle"
 
-const styles = StyleSheet.create({
+// styles
+import { Colors, Metrics } from "../themes"
+
+const styles = {
   container: {
     flex: 1,
     backgroundColor: Colors.background,
@@ -20,7 +23,8 @@ const styles = StyleSheet.create({
   wordList: {
     height: 60,
   },
-})
+  keyboard: { paddingBottom: Metrics.spacings.large },
+}
 
 type Props = {|
   +api: any,
@@ -79,16 +83,19 @@ export default class RootContainer extends React.PureComponent<Props> {
   render() {
     const { message, wordList, loading } = this.state
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={renderStyle(styles.container)}>
         <Message message={message} />
-        <View style={styles.wordList}>
+        <View style={renderStyle(styles.wordList)}>
           <WordList
             loading={loading}
             onWordPress={this.onWordPress}
             words={wordList}
           />
         </View>
-        <Keyboard onNumberPress={this.onNumberPress} />
+        <Keyboard
+          onNumberPress={this.onNumberPress}
+          style={renderStyle(styles.keyboard)}
+        />
       </SafeAreaView>
     )
   }

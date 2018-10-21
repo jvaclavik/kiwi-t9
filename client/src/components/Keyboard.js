@@ -1,6 +1,6 @@
 // @flow
 import React from "react"
-import { View, StyleSheet } from "react-native"
+import { View } from "react-native"
 import shortid from "shortid"
 
 // components
@@ -8,11 +8,12 @@ import { RoundedButton } from "."
 
 // utils
 import keyboardMap from "../utils/keyboardMap"
+import renderStyle from "../utils/renderStyle"
 
 // theme
 import { Metrics } from "../themes"
 
-const styles = StyleSheet.create({
+const styles = {
   grid: {
     flex: 1,
     flexDirection: "row",
@@ -27,19 +28,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginVertical: Metrics.spacings.base,
   },
-})
+}
 
 type Props = {|
-  onNumberPress: string => void,
+  +onNumberPress: string => void,
+  style?: StyleValue,
 |}
 
 export default class Keyboard extends React.PureComponent<Props> {
+  static defaultProps = {
+    style: {},
+  }
+
   render() {
-    const { onNumberPress } = this.props
+    const { onNumberPress, style } = this.props
     return (
-      <View style={styles.grid}>
+      <View style={renderStyle([styles.grid, style])}>
         {keyboardMap.map(item => (
-          <View style={styles.button} key={shortid.generate()}>
+          <View style={renderStyle(styles.button)} key={shortid.generate()}>
             <RoundedButton
               onPress={() => onNumberPress(item.number)}
               number={item.number}

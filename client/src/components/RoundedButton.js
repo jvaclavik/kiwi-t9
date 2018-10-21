@@ -1,14 +1,17 @@
 // @flow
 import React from "react"
-import { StyleSheet, Text, TouchableOpacity } from "react-native"
+import { Text, TouchableOpacity } from "react-native"
 
 // theme
 import { Colors, Metrics, Fonts } from "../themes"
 
+// utils
+import renderStyle from "../utils/renderStyle"
+
 // types
 import { StyleValue } from "../types"
 
-const styles = StyleSheet.create({
+const styles = {
   button: {
     alignItems: "center",
     backgroundColor: Colors.background,
@@ -26,22 +29,29 @@ const styles = StyleSheet.create({
   text: {
     fontSize: Fonts.sizes.small,
   },
-})
+}
 
 type Props = {|
   +onPress: () => void,
   +number: string,
   +characters: string,
-  +style: StyleValue,
+  style?: StyleValue,
 |}
 
 export default class RoundedButton extends React.PureComponent<Props> {
+  static defaultProps = {
+    style: {},
+  }
+
   render() {
     const { number, characters, onPress, style } = this.props
     return (
-      <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
-        <Text style={styles.number}>{number}</Text>
-        <Text style={styles.text}>{characters.toUpperCase()}</Text>
+      <TouchableOpacity
+        onPress={onPress}
+        style={renderStyle([styles.button, style])}
+      >
+        <Text style={renderStyle(styles.number)}>{number}</Text>
+        <Text style={renderStyle(styles.text)}>{characters.toUpperCase()}</Text>
       </TouchableOpacity>
     )
   }
