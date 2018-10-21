@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with optional props 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "marginBottom": 10,
+      "marginHorizontal": 40,
+      "marginTop": 30,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 32,
+        "fontWeight": "900",
+      }
+    }
+  >
+    Title
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with required props only 1`] = `
+<View
+  style={
+    Object {
+      "marginBottom": 10,
+      "marginHorizontal": 40,
+      "marginTop": 30,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#000",
+        "fontSize": 32,
+        "fontWeight": "900",
+      }
+    }
+  >
+    Title
+  </Text>
+</View>
+`;

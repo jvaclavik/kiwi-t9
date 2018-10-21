@@ -1,3 +1,4 @@
+// @flow
 export default [
   { type: "number", value: "1", text: "" },
   { type: "number", value: "2", text: "abc" },

@@ -1,3 +1,4 @@
+// @flow
 export default {
   buttons: {
     height: 80,

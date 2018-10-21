@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with optional props 1`] = `
+<View
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+/>
+`;
+
+exports[`renders correctly with required props only 1`] = `
+<View
+  style={Object {}}
+/>
+`;

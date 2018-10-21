@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with optional props 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ffffff",
+      "borderColor": "white",
+      "borderRadius": 40,
+      "borderWidth": 1,
+      "height": 80,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 80,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "pink",
+        "fontSize": 32,
+        "fontWeight": "200",
+      }
+    }
+  >
+    2
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 13,
+      }
+    }
+  >
+    ABC
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with required props only 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ffffff",
+      "borderColor": "rgb(24,202,167)",
+      "borderRadius": 40,
+      "borderWidth": 1,
+      "height": 80,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 80,
+    }
+  }
+/>
+`;
