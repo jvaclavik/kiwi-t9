@@ -1,7 +1,10 @@
 // @flow
+import { Dimensions } from "react-native"
+
 export default {
   buttons: {
-    height: 80,
+    size: 65 + (Dimensions.get("window").width - 320) / 3,
+    minSize: 44,
   },
   spacings: {
     small: 5,

@@ -1,6 +1,6 @@
 // @flow
 import React from "react"
-import { View } from "react-native"
+import { View, ScrollView } from "react-native"
 import shortid from "shortid"
 
 // components
@@ -29,8 +29,8 @@ const styles = {
     marginVertical: Metrics.spacings.small,
   },
   spacer: {
-    width: Metrics.buttons.height + 2 * Metrics.borderWidth,
-    height: Metrics.buttons.height + 2 * Metrics.borderWidth,
+    width: Metrics.buttons.size + 2 * Metrics.borderWidth,
+    height: Metrics.buttons.size + 2 * Metrics.borderWidth,
   },
   buttonWithoutBorder: {
     borderColor: Colors.background,
@@ -100,9 +100,11 @@ export default class Keyboard extends React.PureComponent<Props> {
     const { style } = this.props
     return (
       <View style={renderStyle([style])}>
-        <View style={renderStyle([styles.grid])}>
-          {keyboardMap.map(item => this.renderButton(item))}
-        </View>
+        <ScrollView>
+          <View style={renderStyle([styles.grid])}>
+            {keyboardMap.map(item => this.renderButton(item))}
+          </View>
+        </ScrollView>
       </View>
     )
   }

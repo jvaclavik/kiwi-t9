@@ -1,6 +1,6 @@
 // @flow
 import React from "react"
-import { SafeAreaView } from "react-native"
+import { SafeAreaView, Dimensions } from "react-native"
 import debounce from "lodash/debounce"
 
 // config
@@ -13,7 +13,7 @@ import { Message, Keyboard, WordList, Title } from "../components"
 import renderStyle from "../utils/renderStyle"
 
 // styles
-import { Colors, Metrics } from "../themes"
+import { Colors } from "../themes"
 
 // types
 import { Api } from "../types"
@@ -30,11 +30,10 @@ const styles = {
     height: 44,
   },
   message: {
-    height: 100,
+    flex: 1,
   },
   keyboard: {
-    flex: 1,
-    paddingBottom: Metrics.spacings.large,
+    flex: 3,
     alignItems: "center",
     justifyContent: "center",
   },

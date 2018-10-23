@@ -18,8 +18,7 @@ const styles = {
   },
   titleContainer: {
     marginHorizontal: Metrics.spacings.section,
-    marginTop: Metrics.spacings.large,
-    marginBottom: Metrics.spacings.base,
+    marginVertical: Metrics.spacings.base,
   },
 }
 
