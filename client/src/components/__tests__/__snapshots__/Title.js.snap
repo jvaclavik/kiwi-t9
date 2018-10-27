@@ -5,9 +5,8 @@ exports[`renders correctly with optional props 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "marginBottom": 10,
       "marginHorizontal": 40,
-      "marginTop": 30,
+      "marginVertical": 10,
     }
   }
 >
@@ -32,9 +31,8 @@ exports[`renders correctly with required props only 1`] = `
 <View
   style={
     Object {
-      "marginBottom": 10,
       "marginHorizontal": 40,
-      "marginTop": 30,
+      "marginVertical": 10,
     }
   }
 >

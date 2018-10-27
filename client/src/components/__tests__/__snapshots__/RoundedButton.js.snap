@@ -15,12 +15,14 @@ exports[`renders correctly with optional props 1`] = `
       "alignItems": "center",
       "backgroundColor": "#ffffff",
       "borderColor": "white",
-      "borderRadius": 40,
+      "borderRadius": 104.16666666666667,
       "borderWidth": 1,
-      "height": 80,
+      "height": 208.33333333333334,
       "justifyContent": "center",
+      "minHeight": 44,
+      "minWidth": 44,
       "opacity": 1,
-      "width": 80,
+      "width": 208.33333333333334,
     }
   }
 >
@@ -68,12 +70,14 @@ exports[`renders correctly with required props only 1`] = `
       "alignItems": "center",
       "backgroundColor": "#ffffff",
       "borderColor": "rgb(24,202,167)",
-      "borderRadius": 40,
+      "borderRadius": 104.16666666666667,
       "borderWidth": 1,
-      "height": 80,
+      "height": 208.33333333333334,
       "justifyContent": "center",
+      "minHeight": 44,
+      "minWidth": 44,
       "opacity": 1,
-      "width": 80,
+      "width": 208.33333333333334,
     }
   }
 />

@@ -1,6 +1,6 @@
 // @flow
 import React from "react"
-import { SafeAreaView, Dimensions } from "react-native"
+import { SafeAreaView } from "react-native"
 import debounce from "lodash/debounce"
 
 // config
@@ -68,7 +68,7 @@ export default class RootContainer extends React.PureComponent<Props> {
         this.setState({ loading: false, wordList: data })
       })
       .catch(error => {
-        console.log(error)
+        console.log(error) // @TODO handle error
       })
   }
 
@@ -131,8 +131,8 @@ export default class RootContainer extends React.PureComponent<Props> {
           style={renderStyle(styles.wordList)}
         />
         <Keyboard
-          showReset={!!message || !!input}
-          showBackspace={!!input}
+          showReset={message || input}
+          showBackspace={input}
           onNumberPress={this.onNumberPress}
           onBackspacePress={this.onBackspacePress}
           onResetPress={this.onResetPress}
