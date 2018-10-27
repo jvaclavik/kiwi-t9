@@ -2,6 +2,7 @@
 import React from "react"
 import { SafeAreaView } from "react-native"
 import debounce from "lodash/debounce"
+import DropdownAlert from "react-native-dropdownalert"
 
 // config
 import appConfig from "../config/appConfig"
@@ -65,10 +66,16 @@ export default class RootContainer extends React.PureComponent<Props> {
       .getWords(input)
       .then(response => response.json())
       .then(data => {
-        this.setState({ loading: false, wordList: data })
+        if (data.errors && data.errors.length > 0) {
+          this.setState({ loading: false })
+          this.dropdown.alertWithType("error", "Error", data.errors.join("\n"))
+        } else {
+          this.setState({ loading: false, wordList: data })
+        }
       })
-      .catch(error => {
-        console.log(error) // @TODO handle error
+      .catch(() => {
+        this.setState({ loading: false })
+        this.dropdown.alertWithType("error", "Error", "Can't connect to server")
       })
   }
 
@@ -137,6 +144,11 @@ export default class RootContainer extends React.PureComponent<Props> {
           onBackspacePress={this.onBackspacePress}
           onResetPress={this.onResetPress}
           style={renderStyle(styles.keyboard)}
+        />
+        <DropdownAlert
+          ref={ref => {
+            this.dropdown = ref
+          }}
         />
       </SafeAreaView>
     )
