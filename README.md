@@ -123,7 +123,7 @@ yarn test
 Retrieves words based on T9 number combination.
 
 - Parameters
-  - input: (number) - T9 number combination (`^[23456789]+$`)
+  - input: (number) - T9 number combination (`^[23456789]{1,11}$`)
 
 * Response 200 (application/json)
 
@@ -147,7 +147,7 @@ Retrieves words based on T9 number combination.
 
             {
                 "errors": [
-                    "Bad input. Allowed pattern is: ^[23456789]+$"
+                    "Bad input. Allowed pattern is: ^[23456789]{1,11}$"
                 ]
             }
 

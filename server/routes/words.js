@@ -4,7 +4,7 @@ const getCartesianProduct = require("../utils/cartesianProduct")
 
 var router = express.Router()
 
-const validationRegexPattern = "^[23456789]+$"
+const validationRegexPattern = "^[23456789]{1,11}$"
 
 const isInputValid = input => new RegExp(validationRegexPattern).test(input)
 

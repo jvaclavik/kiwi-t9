@@ -5,7 +5,7 @@ const app = require("../app")
 const correctResult = ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
 
 const wrongInputResult = {
-  errors: ["Bad input. Allowed pattern is: ^[23456789]+$"],
+  errors: ["Bad input. Allowed pattern is: ^[23456789]{1,11}$"],
 }
 const noInputResult = {
   errors: ["No input"],
